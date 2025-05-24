@@ -1,0 +1,32 @@
+[
+    {
+        "gender":  "male",
+        "first_name": "John",
+        "last_name":  "Abrams",
+        "phone": "+7(903)-812-10-20",
+        "email":  "john@test.com",
+        "location": "USA, New York City",
+        "photo":  "john_photo",
+        "profile_url": "/users/1"
+    },
+    {
+        "gender":  "male",
+        "first_name": "Ivan",
+        "last_name":  "Petrov",
+        "phone": "+7(911)-825-46-55",
+        "email":  "ivan@test.com",
+        "location": "Moscow, Russia",
+        "photo":  "ivan_photo",
+        "profile_url": "/users/12"
+    },
+    {
+        "gender":  "female",
+        "first_name": "Vika",
+        "last_name":  "Sidorova",
+        "phone": "+7(920)-834-35-74",
+        "email":  "vika@test.com",
+        "location": "Kaluga, Russia",
+        "photo":  "vika_photo",
+        "profile_url": "/users/3"
+    }
+]
