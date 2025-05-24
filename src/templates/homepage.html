@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная страница</title>
+    <style>
+        /* Стили для формы */
+        .load-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            display: flex;
+            gap: 10px;
+        }
+        .form-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #4d90fe;
+            box-shadow: 0 0 0 3px rgba(77, 144, 254, 0.1);
+        }
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #4d90fe;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background: #357abd;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(77, 144, 254, 0.2);
+        }
+        @media (max-width: 480px) {
+            .form-group {
+                flex-direction: column;
+            }
+            .submit-btn {
+                justify-content: center;
+            }
+        }
+
+        /* Оригинальные стили */
+        .pagination { margin-top: 20px; }
+        .pagination a { padding: 8px; margin: 0 4px; }
+        .current-page { font-weight: bold; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th { background-color: #f8f9fa; }
+        .user-photo {
+            width: 50px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" class="load-form">
+        <div class="form-group">
+            <input
+                type="number"
+                name="users_num"
+                min="1"
+                placeholder="Сколько пользователей загрузить?"
+                required
+                class="form-input"
+            >
+            <button type="submit" class="submit-btn">
+                <span>Загрузить</span>
+            </button>
+        </div>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Фото</th>
+                <th>Пол</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th>Место проживания</th>
+                <th>Профиль</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>
+                    <img
+                        src="{{ user.photo }}"
+                        alt="Фото {{ user.first_name }}"
+                        class="user-photo"
+                    >
+                </td>
+                <td>{{ user.gender | capitalize }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    {% if user.location %}
+                        {{ user.location }}
+                    {% else %}
+                        Не указано
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="/user/{{ user.id }}">Подробнее</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="/?page={{ page-1 }}&per_page={{ per_page }}">← Назад</a>
+        {% endif %}
+
+        <span class="current-page">Страница {{ page }}</span>
+
+        {% if page < total_pages %}
+            <a href="/?page={{ page+1 }}&per_page={{ per_page }}">Далее →</a>
+        {% endif %}
+    </div>
+</body>
+</html>
