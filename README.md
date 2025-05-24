@@ -14,6 +14,7 @@
 ```commandline
 python -m venv venv
 source venv/bin/activate(для Linux и MacOS)
+venv\Scripts\activate.bat(для Windows)
 ```
 
 2. Установка зависимостей
@@ -22,10 +23,11 @@ source venv/bin/activate(для Linux и MacOS)
 pip install requirements.txt
 ```
 
-
 ### Запуск
 
-0. Создать `.env` файл с этими переменными (можно командой `make env`)
+Все описанные ниже команды запускаются из корня проекта
+
+1. Создать `.env` файл с этими переменными (можно командой `make env`)
 ```dotenv
 DB_HOST=...
 DB_PORT=5432
