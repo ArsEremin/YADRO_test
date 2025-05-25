@@ -20,7 +20,7 @@ venv\Scripts\activate.bat(для Windows)
 2. Установка зависимостей
 
 ```commandline
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Запуск
